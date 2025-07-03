@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Integrated Health CP Assignment Program - Statement of Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .company {
+            font-size: 1.2rem;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .nav-bar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 1rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: #10b981;
+            border-bottom-color: #10b981;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.03) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .executive-summary h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .executive-summary p {
+            color: #1e293b;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Use Cases */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .use-case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+        }
+
+        .use-case-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .use-case-card h4 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .use-case-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .use-case-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .use-case-card li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Requirements Cards */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .requirement-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .requirement-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .requirement-card h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .requirement-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirement-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .requirement-card li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .phase-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .phase-timeline {
+            background: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .phase-weeks {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .week-card {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .week-title {
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-tasks {
+            list-style: none;
+            padding: 0;
+        }
+
+        .week-tasks li {
+            padding: 0.25rem 0;
+            color: #64748b;
+        }
+
+        /* Budget Section */
+        .budget-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .budget-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            text-align: center;
+        }
+
+        .budget-card.development {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.03) 100%);
+        }
+
+        .budget-card.infrastructure {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.03) 100%);
+        }
+
+        .budget-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-card.development .budget-number { color: #10b981; }
+        .budget-card.infrastructure .budget-number { color: #3b82f6; }
+
+        .budget-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-breakdown {
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .budget-breakdown li {
+            padding: 0.25rem 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Risk Assessment */
+        .risk-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .risk-category {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .risk-category h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #10b981;
+        }
+
+        .risk-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.05);
+            border-left: 4px solid #ef4444;
+            border-radius: 8px;
+        }
+
+        .risk-item h4 {
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-item p {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .mitigation {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .mitigation strong {
+            color: #10b981;
+        }
+
+        /* Deliverables Section */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .deliverable-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+        }
+
+        .deliverable-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .deliverable-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .deliverable-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .deliverable-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* COTS Section */
+        .cots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cots-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f59e0b;
+        }
+
+        .cots-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cots-category {
+            background: #f59e0b;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .cots-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .cots-metric {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 6px;
+        }
+
+        .cots-metric-value {
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .cots-metric-label {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .cots-strengths {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 0.5rem 0;
+        }
+
+        .cots-limitations {
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 0.5rem 0;
+        }
+
+        .cots-strengths strong {
+            color: #10b981;
+        }
+
+        .cots-limitations strong {
+            color: #ef4444;
+        }
+
+        /* Recommendation */
+        .recommendation {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recommendation h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .recommendation p {
+            color: #78350f;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: #10b981;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Mobile Integrated Health Care Provider Assignment Program</h1>
+            <p class="subtitle">Healthcare Provider Routing & Scheduling Optimization</p>
+            <p class="company">Proposed by Conifer Technologies LLC</p>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#use-cases" class="nav-link">Use Cases</a>
+            <a href="#requirements" class="nav-link">Requirements</a>
+            <a href="#project-plan" class="nav-link">Project Plan</a>
+            <a href="#budget" class="nav-link">Budget</a>
+            <a href="#deliverables" class="nav-link">Deliverables</a>
+            <a href="#risk-assessment" class="nav-link">Risk Assessment</a>
+            <a href="#cots-analysis" class="nav-link">COTS Analysis</a>
+        </div>
+    </nav>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <p class="section-subtitle">A comprehensive healthcare provider routing and scheduling optimization system designed to efficiently assign Care Providers (CPs) and Emergency Medical Technicians (EMTs) to patients.</p>
+            
+            <div class="executive-summary">
+                <h3>Executive Summary</h3>
+                <p>This project will develop a custom optimization solution using Google OR-Tools to automate the daily assignment of healthcare providers to patients across multiple hospitals and outpatient locations. The system will replace manual scheduling processes with an intelligent, automated solution that considers multiple factors including provider expertise, patient history, geographic proximity, and workload balancing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="section">
+        <div class="container">
+            <h2 class="section-title">Use Cases</h2>
+            <p class="section-subtitle">Primary and secondary use cases for the optimization system</p>
+            
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <h3>Primary Use Cases</h3>
+                    <ul>
+                        <li><strong>Daily Morning Assignments:</strong> Automatically assign CPs to inpatients based on optimized routing and continuity factors</li>
+                        <li><strong>Outpatient Scheduling:</strong> Efficiently schedule EMTs and CPs for outpatient visits with geographic clustering</li>
+                        <li><strong>Tuck-In Visit Assignments:</strong> Optimize evening/night visit assignments for patients requiring basic care</li>
+                        <li><strong>Dynamic Reassignment:</strong> Real-time rescheduling when providers call out or patient conditions change</li>
+                        <li><strong>Workload Management:</strong> Ensure balanced assignments while respecting maximum visit limits</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>Secondary Use Cases</h3>
+                    <ul>
+                        <li><strong>Performance Analytics:</strong> Track provider efficiency and total time spent traveling</li>
+                        <li><strong>Schedule Optimization:</strong> Identify opportunities to reduce travel time and improve care delivery</li>
+                        <li><strong>Resource Planning:</strong> Forecast staffing needs based on patient volume and geographic distribution</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section id="requirements" class="section">
+        <div class="container">
+            <h2 class="section-title">Requirements</h2>
+            <p class="section-subtitle">Functional and technical requirements for the optimization system</p>
+            
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <h3>Core Data Requirements</h3>
+                    <ul>
+                        <li>CP Daily Work Location: Daily work locations (Beam, North, etc.), certifications, specializations</li>
+                        <li>Patient Data: GPS coordinates, Medical Record Numbers (MRN), admitting hospitals (CMC, Cab, etc.)</li>
+                        <li>Care Constraints: EMT-eligible patients, pediatric patients, medication restrictions (Lasix, Insulin), and PT acuity</li>
+                        <li>Visit History: Previous provider-patient interactions for continuity scoring</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card">
+                    <h3>Assignment Constraints</h3>
+                    <ul>
+                        <li>Provider Limits: CPs maximum 4 inpatients (8 visits), EMTs/CPs maximum 6 outpatients</li>
+                        <li>Scope Restrictions: EMT limitations for specialized care requirements</li>
+                        <li>Geographic Boundaries: Multi-hospital system coverage area</li>
+                        <li>Scheduling Windows: Morning assignments, tuck-in visits, emergency reassignments</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card">
+                    <h3>Optimization Criteria</h3>
+                    <ul>
+                        <li>Daily PT to CP Match Score: From -2 to 20 based on a static set of rules</li>
+                        <li>Continuity Scoring: Previous day (+2), previous stay (+1) bonuses</li>
+                        <li>Geographic Efficiency: Distance-based scoring from provider base locations</li>
+                        <li>Hospital Clustering: Same-hospital visit bonuses (+5)</li>
+                        <li>Travel Optimization: Proximity-based scoring for sequential visits</li>
+                        <li>Workload Balancing: Penalty system for overloaded providers</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card">
+                    <h3>Technical Architecture</h3>
+                    <ul>
+                        <li>Backend: Python-based application using Google OR-Tools optimization engine</li>
+                        <li>Database: PostgreSQL for patient/provider data storage</li>
+                        <li>API Layer: RESTful services for data integration and mobile access</li>
+                        <li>Web Interface: React-based dashboard for schedule management</li>
+                        <li>Integration: Hospital information systems integration</li>
+                    </ul>
+                </div>
+
+                <div class="requirement-card">
+                    <h3>Security & Compliance</h3>
+                    <ul>
+                        <li>HIPAA Compliance: Protected health information handling</li>
+                        <li>Data Encryption: At-rest and in-transit encryption</li>
+                        <li>Access Controls: Role-based authentication and authorization</li>
+                        <li>Audit Logging: Complete action tracking for compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Plan Section -->
+    <section id="project-plan" class="section">
+        <div class="container">
+            <h2 class="section-title">Project Plan</h2>
+            <p class="section-subtitle">16-week development plan with clear milestones and deliverables</p>
+            
+            <div class="timeline-container">
+                <div class="timeline-grid">
+                    <div class="phase-card">
+                        <div class="phase-timeline">Phase 1: Foundation & Analysis (Weeks 1-3)</div>
+                        <h3 class="phase-title">Requirements Analysis & System Design</h3>
+                        
+                        <div class="phase-weeks">
+                            <div class="week-card">
+                                <div class="week-title">Week 1: Requirements Analysis</div>
+                                <ul class="week-tasks">
+                                    <li>Stakeholder interviews and workflow analysis</li>
+                                    <li>Current state documentation and pain point identification</li>
+                                    <li>Technical environment assessment</li>
+                                    <li>Data source inventory and access planning</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 2: System Design</div>
+                                <ul class="week-tasks">
+                                    <li>Architecture design and technology stack finalization</li>
+                                    <li>Database schema design</li>
+                                    <li>API specification development</li>
+                                    <li>User interface mockups and workflow design</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 3: Development Environment Setup</div>
+                                <ul class="week-tasks">
+                                    <li>Development infrastructure provisioning</li>
+                                    <li>Google OR-Tools integration and testing</li>
+                                    <li>Database setup and sample data loading</li>
+                                    <li>Development team onboarding</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-timeline">Phase 2: Core Development (Weeks 4-10)</div>
+                        <h3 class="phase-title">Backend Development & Optimization Engine</h3>
+                        
+                        <div class="phase-weeks">
+                            <div class="week-card">
+                                <div class="week-title">Week 4: Data Layer Implementation</div>
+                                <ul class="week-tasks">
+                                    <li>Database schema implementation</li>
+                                    <li>Data import/export functionality</li>
+                                    <li>GPS coordinate integration</li>
+                                    <li>Patient and provider data management</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 5: Optimization Engine Development</div>
+                                <ul class="week-tasks">
+                                    <li>Google OR-Tools integration</li>
+                                    <li>Scoring algorithm implementation</li>
+                                    <li>Constraint definition and validation</li>
+                                    <li>Initial optimization testing</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 6: Assignment Logic Implementation</div>
+                                <ul class="week-tasks">
+                                    <li>Morning assignment algorithm</li>
+                                    <li>Tuck-in visit optimization</li>
+                                    <li>Outpatient scheduling logic</li>
+                                    <li>Dynamic reassignment capabilities</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 7: API Development</div>
+                                <ul class="week-tasks">
+                                    <li>RESTful API implementation</li>
+                                    <li>Authentication and authorization</li>
+                                    <li>Data validation and error handling</li>
+                                    <li>Mobile-friendly endpoints</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 8: Testing & Optimization</div>
+                                <ul class="week-tasks">
+                                    <li>Unit testing and integration testing</li>
+                                    <li>Performance optimization</li>
+                                    <li>Algorithm tuning with sample data</li>
+                                    <li>Security testing and HIPAA compliance validation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-timeline">Phase 3: User Interface & Integration (Weeks 11-13)</div>
+                        <h3 class="phase-title">Frontend Development & System Integration</h3>
+                        
+                        <div class="phase-weeks">
+                            <div class="week-card">
+                                <div class="week-title">Week 9: Web Interface Development</div>
+                                <ul class="week-tasks">
+                                    <li>Dashboard development</li>
+                                    <li>Schedule management interface</li>
+                                    <li>Provider and patient management screens</li>
+                                    <li>Reporting and analytics views</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 10: System Integration</div>
+                                <ul class="week-tasks">
+                                    <li>Hospital information system integration</li>
+                                    <li>GPS and mapping service integration</li>
+                                    <li>Mobile application development (if required)</li>
+                                    <li>Third-party API integrations</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 11: End-to-End Testing</div>
+                                <ul class="week-tasks">
+                                    <li>Full system testing with real data</li>
+                                    <li>User acceptance testing</li>
+                                    <li>Performance testing under load</li>
+                                    <li>Security penetration testing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-timeline">Phase 4: Deployment & Training (Weeks 14-16)</div>
+                        <h3 class="phase-title">Production Deployment & User Training</h3>
+                        
+                        <div class="phase-weeks">
+                            <div class="week-card">
+                                <div class="week-title">Week 12: Deployment Preparation</div>
+                                <ul class="week-tasks">
+                                    <li>Production environment setup</li>
+                                    <li>Data migration planning and execution</li>
+                                    <li>Backup and disaster recovery implementation</li>
+                                    <li>Go-live planning and preparation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 13: Training & Documentation</div>
+                                <ul class="week-tasks">
+                                    <li>User training program delivery</li>
+                                    <li>Administrator training</li>
+                                    <li>Documentation completion</li>
+                                    <li>Support procedure establishment</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="week-card">
+                                <div class="week-title">Week 14: Go-Live & Support</div>
+                                <ul class="week-tasks">
+                                    <li>Production deployment</li>
+                                    <li>Go-live support and monitoring</li>
+                                    <li>Issue resolution and system tuning</li>
+                                    <li>Post-deployment optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget Section -->
+    <section id="budget" class="section">
+        <div class="container">
+            <h2 class="section-title">Budget Estimate</h2>
+            <p class="section-subtitle">Development and infrastructure cost breakdown</p>
+            
+            <div class="budget-cards">
+                <div class="budget-card development">
+                    <div class="budget-number">$126,000</div>
+                    <div class="budget-label">Estimated Total Initial Development Cost</div>
+                    <div class="budget-breakdown">
+                        <ul>
+                            <li>Phase 1 (Foundation): 3 weeks, $27,000</li>
+                            <li>Phase 2 (Core Development): 6 weeks, $54,000</li>
+                            <li>Phase 3 (UI & Integration): 3 weeks, $27,000</li>
+                            <li>Phase 4 (Deployment): 2 weeks, $18,000</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="budget-card infrastructure">
+                    <div class="budget-number">$81,500</div>
+                    <div class="budget-label">Estimated Annual Infrastructure Cost</div>
+                    <div class="budget-breakdown">
+                        <ul>
+                            <li>Cloud Hosting: $2,000</li>
+                            <li>Third-party APIs: $2,000</li>
+                            <li>Security & Compliance: $10,000</li>
+                            <li>Ongoing Support & Maintenance: $67,500</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables Section -->
+    <section id="deliverables" class="section">
+        <div class="container">
+            <h2 class="section-title">Deliverables</h2>
+            <p class="section-subtitle">Complete project deliverables and documentation</p>
+            
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <h3>Technical Deliverables</h3>
+                    <ul class="deliverable-list">
+                        <li>Optimization Engine: Google OR-Tools based assignment system</li>
+                        <li>Web Application: Complete scheduling and management interface</li>
+                        <li>Mobile Interface: Web application fully usable and responsive on mobile</li>
+                        <li>API Documentation: Complete API specification and integration guide</li>
+                        <li>Database: Fully configured and optimized data storage solution</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Documentation Deliverables</h3>
+                    <ul class="deliverable-list">
+                        <li>User Manuals: End-user and administrator guides</li>
+                        <li>Technical Documentation: System architecture and maintenance guides</li>
+                        <li>Training Materials: Video tutorials and quick reference guides</li>
+                        <li>Deployment Guide: Installation and configuration procedures</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Support Deliverables</h3>
+                    <ul class="deliverable-list">
+                        <li>Post-deployment bug fixes and optimization</li>
+                        <li>Training Program: Comprehensive user and administrator training</li>
+                        <li>Knowledge Transfer: Technical handoff to client IT team</li>
+                        <li>Maintenance Plan: Ongoing support and enhancement roadmap</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Assessment Section -->
+    <section id="risk-assessment" class="section">
+        <div class="container">
+            <h2 class="section-title">Risk Assessment</h2>
+            <p class="section-subtitle">Potential risks and mitigation strategies</p>
+            
+            <div class="risk-grid">
+                <div class="risk-category">
+                    <h3>Technical Risks</h3>
+                    
+                    <div class="risk-item">
+                        <h4>Integration Complexity</h4>
+                        <p>Integration with Hospital IT systems often requires a series of security reviews, approvals, and is subject to final approval by the Hospital CIO. Two possible work arounds are to build the system to a security specification such as SOC2 Type2 or HITRUST. The other option is to manually load the data into the routing application via a CSV download from the EMR or similar process.</p>
+                        <div class="mitigation">
+                            <strong>Mitigation:</strong> Implement SOC2 Type2 compliance or develop manual data loading processes as backup integration methods.
+                        </div>
+                    </div>
+                    
+                    <div class="risk-item">
+                        <h4>Data Quality</h4>
+                        <p>Incomplete or inaccurate source(s) of data will render the system inoperable</p>
+                        <div class="mitigation">
+                            <strong>Mitigation:</strong> Implement comprehensive data validation and quality checks throughout the system.
+                        </div>
+                    </div>
+                    
+                    <div class="risk-item">
+                        <h4>HIPAA Compliance</h4>
+                        <p>PT GPS location, medication, and MRN are all directly identifiable information which would mean this system must meet HIPAA compliance.</p>
+                        <div class="mitigation">
+                            <strong>Mitigation:</strong> Implement comprehensive HIPAA compliance measures including encryption, access controls, and audit logging.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COTS Analysis Section -->
+    <section id="cots-analysis" class="section">
+        <div class="container">
+            <h2 class="section-title">Commercial Off-the-Shelf Analysis</h2>
+            <p class="section-subtitle">Evaluation of existing solutions and why a custom solution is recommended</p>
+            
+            <div class="cots-grid">
+                <div class="cots-card">
+                    <div class="cots-category">Route Optimization</div>
+                    <h3>Route4Me</h3>
+                    <div class="cots-metrics">
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">60%</div>
+                            <div class="cots-metric-label">Fit</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">$40-200</div>
+                            <div class="cots-metric-label">Monthly Cost</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">Per User</div>
+                            <div class="cots-metric-label">Pricing</div>
+                        </div>
+                    </div>
+                    <div class="cots-strengths">
+                        <strong>Strengths:</strong> User-friendly interface, good basic routing optimization
+                    </div>
+                    <div class="cots-limitations">
+                        <strong>Limitations:</strong> Limited healthcare-specific features, basic scoring system
+                    </div>
+                </div>
+
+                <div class="cots-card">
+                    <div class="cots-category">Route Optimization</div>
+                    <h3>OptimoRoute</h3>
+                    <div class="cots-metrics">
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">55%</div>
+                            <div class="cots-metric-label">Fit</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">$35-45</div>
+                            <div class="cots-metric-label">Monthly Cost</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">Per Vehicle</div>
+                            <div class="cots-metric-label">Pricing</div>
+                        </div>
+                    </div>
+                    <div class="cots-strengths">
+                        <strong>Strengths:</strong> Advanced scheduling features, mobile apps
+                    </div>
+                    <div class="cots-limitations">
+                        <strong>Limitations:</strong> No healthcare provider continuity features
+                    </div>
+                </div>
+
+                <div class="cots-card">
+                    <div class="cots-category">Enterprise Solution</div>
+                    <h3>Oracle Field Service</h3>
+                    <div class="cots-metrics">
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">75%</div>
+                            <div class="cots-metric-label">Fit</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">$150-300</div>
+                            <div class="cots-metric-label">Monthly Cost</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">Per User</div>
+                            <div class="cots-metric-label">Pricing</div>
+                        </div>
+                    </div>
+                    <div class="cots-strengths">
+                        <strong>Strengths:</strong> Enterprise-grade, highly customizable
+                    </div>
+                    <div class="cots-limitations">
+                        <strong>Limitations:</strong> Expensive, complex implementation
+                    </div>
+                </div>
+
+                <div class="cots-card">
+                    <div class="cots-category">Enterprise Solution</div>
+                    <h3>Salesforce Field Service</h3>
+                    <div class="cots-metrics">
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">65%</div>
+                            <div class="cots-metric-label">Fit</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">$75-150</div>
+                            <div class="cots-metric-label">Monthly Cost</div>
+                        </div>
+                        <div class="cots-metric">
+                            <div class="cots-metric-value">Per User</div>
+                            <div class="cots-metric-label">Pricing</div>
+                        </div>
+                    </div>
+                    <div class="cots-strengths">
+                        <strong>Strengths:</strong> Integrated CRM, mobile optimization
+                    </div>
+                    <div class="cots-limitations">
+                        <strong>Limitations:</strong> Requires extensive customization for healthcare
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendation">
+                <h3>Recommendation</h3>
+                <p>This is a classic logistics and computer science challenge often referred to as the Traveling Salesman Problem (TSP) or the Vehicle Routing Problem (VRP). Every company that manages drivers must solve this problem. As such many commercial off the shelf options exist to solve this problem. While each has limitations each will likely solve the core problem (CP to PT routing) effectively, as such Conifer recommends these options be explored prior to engaging in a software development project.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Optimize Your Healthcare Routing?</h2>
+                <p>Let's discuss your healthcare provider assignment needs and begin development immediately.</p>
+                <a href="mailto:ryan@conifertechnologies.com" class="cta-button">Contact Us Today</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
